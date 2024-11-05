@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import chess.ChessMatch;
@@ -44,8 +43,8 @@ public class UI {
 		public static ChessPosition readChessPosition(Scanner sc) {
 			try {
 				String s = sc.nextLine();
-				Character column = s.charAt(0);
-				Integer row = Integer.parseInt(s.substring(1));
+				char column = s.charAt(0);
+				int row = Integer.parseInt(s.substring(1));
 				return new ChessPosition(column, row);
 				}
 			catch(RuntimeException e) {
@@ -126,7 +125,7 @@ public class UI {
 		System.out.println("Captured pieces:");
 		System.out.print("Black: ");
 		System.out.print(ANSI_YELLOW);
-		System.out.println(Arrays.toString(white.toArray()));
+		System.out.println(Arrays.toString(black.toArray()));
 		System.out.print(ANSI_RESET);
 	}
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import boardgame.Board;
-import boardgame.BoardException;
 import boardgame.Piece;
 import boardgame.Position;
 import chess.pieces.Bishop;
@@ -17,7 +16,7 @@ import chess.pieces.Rook;
 
 public class ChessMatch {
 
-	private Integer turn;
+	private int turn;
 	private Color currentPlayer;
 	private Board board;
 	private boolean check;
@@ -33,7 +32,7 @@ public class ChessMatch {
 		initialSetup();
 	}
 	
-	public Integer getTurn() {
+	public int getTurn() {
 		return turn;
 	}
 
@@ -86,7 +85,6 @@ public class ChessMatch {
 			nextTurn();
 		}
 		
-		nextTurn();
 		return (ChessPiece)capturedPiece;
 	}
 	
@@ -117,7 +115,7 @@ public class ChessMatch {
 
 	private void validateSourcePosition(Position position) {
 		if(!board.thereIsAPiece(position)) {
-			throw new BoardException("There is no piece on source position");
+			throw new ChessException("There is no piece on source position");
 		}
 		if(currentPlayer !=  ((ChessPiece)board.piece(position)).getColor()) {
 			throw new ChessException("The Chosen piece is not yours");
@@ -191,7 +189,7 @@ public class ChessMatch {
 		return true;
 	}
 	
-	private void placeNewPiece(Character column, Integer row, ChessPiece piece) {
+	private void placeNewPiece(Character column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
 		piecesOnTheBoard.add(piece);
 	}
